@@ -19,15 +19,17 @@ public class Patient {
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
 
-    @Column(name = "admitted_by")
-    @ManyToMany(mappedBy = "employee_id")
-    private Integer admittedBy;
+    @ManyToOne
+    @JoinColumn(name = "admitted_by")
+    private Employee admittedBy;
 
-    public Patient(Integer patientId, String name, Date dateOfBirth, Integer admittedBy) {
+    public Patient(Integer patientId, String name, Date dateOfBirth, Employee admittedBy) {
         setName(name);
         setDateOfBirth(dateOfBirth);
         setAdmittedBy(admittedBy);
     }
+
+    public Patient(){}
 
     public Integer getPatientId() {
         return patientId;
@@ -53,11 +55,11 @@ public class Patient {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Integer getAdmittedBy() {
+    public Employee getAdmittedBy() {
         return admittedBy;
     }
 
-    public void setAdmittedBy(Integer admittedBy) {
+    public void setAdmittedBy(Employee admittedBy) {
         this.admittedBy = admittedBy;
     }
 }

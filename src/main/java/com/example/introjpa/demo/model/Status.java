@@ -1,6 +1,6 @@
 package com.example.introjpa.demo.model;
 
-public enum status {
+public enum Status {
     ON,
     ON_CALL,
     OFF

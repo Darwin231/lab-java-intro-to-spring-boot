@@ -2,13 +2,18 @@ package com.example.introjpa.demo.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-@Table
+@Table(name = "employee")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ManyToMany(mappedBy = "admitted_by")
     private Integer employeeId;
+
+    @OneToMany
+    private List<Patient> patientList= new ArrayList<Patient>();
 
     @Column(name = "department")
     private String department;
@@ -17,13 +22,15 @@ public class Employee {
     private String Name;
 
     @Column(name = "status")
-    private status status;
+    private Status status;
 
-    public Employee(Integer employeeId, String department, String name, com.example.introjpa.demo.model.status status) {
+    public Employee( String department, String name, Status status) {
         setDepartment(department);
         setName(name);
         setStatus(status);
     }
+
+    public Employee(){}
 
     public Integer getEmployeeId() {
         return employeeId;
@@ -49,11 +56,11 @@ public class Employee {
         Name = name;
     }
 
-    public com.example.introjpa.demo.model.status getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(com.example.introjpa.demo.model.status status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 }
